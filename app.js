@@ -4,7 +4,7 @@ Ext.Loader.setConfig({
 
 Ext.application({
     name: 'My',
-    appFolder: '/app',
+    appFolder: 'app',
 
     requires: [
     	'My.view.SelectionField',
