@@ -10,7 +10,7 @@ Ext.define('My.view.ShipmentsGrid', {
         dataIndex: "quantity",
         width: 100,
         editor: {
-        	xtype: 'text'
+        	xtype: 'textfield'
         }
     }, {
     	text: "Contact",
