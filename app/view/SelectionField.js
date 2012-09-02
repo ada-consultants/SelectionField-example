@@ -54,6 +54,8 @@ Ext.define('My.view.SelectionField', {
             me.getEl().down('#' + me.id + '-inputEl').setHTML(item.get('name'));
         };
 
+        this.onFocus();
+
         win.on('itemselection', itemSelectionCallback);
         // When closing the window, you want to unregister the event because
         // another field might want to use the same window instance.
@@ -82,7 +84,7 @@ Ext.define('My.view.SelectionField', {
     validateBlur: function(e) {
         var win = this.getSelectionWindow();
 
-        if (!win.isVisible()) {
+        if (win.isVisible()) {
             return false;
         } else {
             return this.callParent(arguments);
