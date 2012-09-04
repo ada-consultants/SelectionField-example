@@ -67,14 +67,22 @@ Ext.define('My.view.SelectionField', {
     },
 
     listeners: {
+        render: function() {
+            var me = this;
+            var parent = me.up();
+
+            if (parent && parent.$className == "Ext.grid.CellEditor") {
+                parent.on('startedit', function() {
+                    me.onFocus();
+                });
+            }
+        },
         show: function() {
             var store = Ext.getStore('Contacts');
             var row = store.getById(parseInt(this.getValue()));
             var to_show = row ? row.get('name') : "";
 
             this.getEl().down('#' + this.id + '-inputEl').setHTML(to_show);
-
-            return to_show;
         },
         change: function(field, newValue) {
             this.updateDisplayValue(newValue);
@@ -84,7 +92,7 @@ Ext.define('My.view.SelectionField', {
     validateBlur: function(e) {
         var win = this.getSelectionWindow();
 
-        if (win.isVisible()) {
+        if (win && win.isVisible()) {
             return false;
         } else {
             return this.callParent(arguments);
